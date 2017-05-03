@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vnasi.mapper.VnasiProductMapper" >
+  <resultMap id="BaseResultMap" type="com.vnasi.pojo.VnasiProduct" >
+    <id column="ep_id" property="epId" jdbcType="INTEGER" />
+    <result column="ep_name" property="epName" jdbcType="VARCHAR" />
+    <result column="ep_description" property="epDescription" jdbcType="VARCHAR" />
+    <result column="ep_price" property="epPrice" jdbcType="DOUBLE" />
+    <result column="ep_stock" property="epStock" jdbcType="INTEGER" />
+    <result column="epc_id" property="epcId" jdbcType="INTEGER" />
+    <result column="epc_child_id" property="epcChildId" jdbcType="INTEGER" />
+    <result column="ep_file_name" property="epFileName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ep_id, ep_name, ep_description, ep_price, ep_stock, epc_id, epc_child_id, ep_file_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.vnasi.pojo.VnasiProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vnasi_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vnasi_product
+    where ep_id = #{epId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vnasi_product
+    where ep_id = #{epId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.vnasi.pojo.VnasiProductExample" >
+    delete from vnasi_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.vnasi.pojo.VnasiProduct" >
+    insert into vnasi_product (ep_id, ep_name, ep_description, 
+      ep_price, ep_stock, epc_id, 
+      epc_child_id, ep_file_name)
+    values (#{epId,jdbcType=INTEGER}, #{epName,jdbcType=VARCHAR}, #{epDescription,jdbcType=VARCHAR}, 
+      #{epPrice,jdbcType=DOUBLE}, #{epStock,jdbcType=INTEGER}, #{epcId,jdbcType=INTEGER}, 
+      #{epcChildId,jdbcType=INTEGER}, #{epFileName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vnasi.pojo.VnasiProduct" >
+    insert into vnasi_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="epId != null" >
+        ep_id,
+      </if>
+      <if test="epName != null" >
+        ep_name,
+      </if>
+      <if test="epDescription != null" >
+        ep_description,
+      </if>
+      <if test="epPrice != null" >
+        ep_price,
+      </if>
+      <if test="epStock != null" >
+        ep_stock,
+      </if>
+      <if test="epcId != null" >
+        epc_id,
+      </if>
+      <if test="epcChildId != null" >
+        epc_child_id,
+      </if>
+      <if test="epFileName != null" >
+        ep_file_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="epId != null" >
+        #{epId,jdbcType=INTEGER},
+      </if>
+      <if test="epName != null" >
+        #{epName,jdbcType=VARCHAR},
+      </if>
+      <if test="epDescription != null" >
+        #{epDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="epPrice != null" >
+        #{epPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="epStock != null" >
+        #{epStock,jdbcType=INTEGER},
+      </if>
+      <if test="epcId != null" >
+        #{epcId,jdbcType=INTEGER},
+      </if>
+      <if test="epcChildId != null" >
+        #{epcChildId,jdbcType=INTEGER},
+      </if>
+      <if test="epFileName != null" >
+        #{epFileName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.vnasi.pojo.VnasiProductExample" resultType="java.lang.Integer" >
+    select count(*) from vnasi_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update vnasi_product
+    <set >
+      <if test="record.epId != null" >
+        ep_id = #{record.epId,jdbcType=INTEGER},
+      </if>
+      <if test="record.epName != null" >
+        ep_name = #{record.epName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.epDescription != null" >
+        ep_description = #{record.epDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.epPrice != null" >
+        ep_price = #{record.epPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.epStock != null" >
+        ep_stock = #{record.epStock,jdbcType=INTEGER},
+      </if>
+      <if test="record.epcId != null" >
+        epc_id = #{record.epcId,jdbcType=INTEGER},
+      </if>
+      <if test="record.epcChildId != null" >
+        epc_child_id = #{record.epcChildId,jdbcType=INTEGER},
+      </if>
+      <if test="record.epFileName != null" >
+        ep_file_name = #{record.epFileName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update vnasi_product
+    set ep_id = #{record.epId,jdbcType=INTEGER},
+      ep_name = #{record.epName,jdbcType=VARCHAR},
+      ep_description = #{record.epDescription,jdbcType=VARCHAR},
+      ep_price = #{record.epPrice,jdbcType=DOUBLE},
+      ep_stock = #{record.epStock,jdbcType=INTEGER},
+      epc_id = #{record.epcId,jdbcType=INTEGER},
+      epc_child_id = #{record.epcChildId,jdbcType=INTEGER},
+      ep_file_name = #{record.epFileName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vnasi.pojo.VnasiProduct" >
+    update vnasi_product
+    <set >
+      <if test="epName != null" >
+        ep_name = #{epName,jdbcType=VARCHAR},
+      </if>
+      <if test="epDescription != null" >
+        ep_description = #{epDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="epPrice != null" >
+        ep_price = #{epPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="epStock != null" >
+        ep_stock = #{epStock,jdbcType=INTEGER},
+      </if>
+      <if test="epcId != null" >
+        epc_id = #{epcId,jdbcType=INTEGER},
+      </if>
+      <if test="epcChildId != null" >
+        epc_child_id = #{epcChildId,jdbcType=INTEGER},
+      </if>
+      <if test="epFileName != null" >
+        ep_file_name = #{epFileName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ep_id = #{epId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vnasi.pojo.VnasiProduct" >
+    update vnasi_product
+    set ep_name = #{epName,jdbcType=VARCHAR},
+      ep_description = #{epDescription,jdbcType=VARCHAR},
+      ep_price = #{epPrice,jdbcType=DOUBLE},
+      ep_stock = #{epStock,jdbcType=INTEGER},
+      epc_id = #{epcId,jdbcType=INTEGER},
+      epc_child_id = #{epcChildId,jdbcType=INTEGER},
+      ep_file_name = #{epFileName,jdbcType=VARCHAR}
+    where ep_id = #{epId,jdbcType=INTEGER}
+  </update>
+</mapper>

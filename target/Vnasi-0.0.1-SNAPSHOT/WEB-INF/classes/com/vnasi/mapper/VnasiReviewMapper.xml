@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vnasi.mapper.VnasiReviewMapper" >
+  <resultMap id="BaseResultMap" type="com.vnasi.pojo.VnasiReview" >
+    <id column="R_Oid" property="rOid" jdbcType="INTEGER" />
+    <result column="ep_name" property="epName" jdbcType="VARCHAR" />
+    <result column="ep_file_name" property="epFileName" jdbcType="VARCHAR" />
+    <result column="R_review" property="rReview" jdbcType="INTEGER" />
+    <result column="R_Content" property="rContent" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    R_Oid, ep_name, ep_file_name, R_review, R_Content
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.vnasi.pojo.VnasiReviewExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vnasi_review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vnasi_review
+    where R_Oid = #{rOid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vnasi_review
+    where R_Oid = #{rOid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.vnasi.pojo.VnasiReviewExample" >
+    delete from vnasi_review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.vnasi.pojo.VnasiReview" >
+    insert into vnasi_review (R_Oid, ep_name, ep_file_name, 
+      R_review, R_Content)
+    values (#{rOid,jdbcType=INTEGER}, #{epName,jdbcType=VARCHAR}, #{epFileName,jdbcType=VARCHAR}, 
+      #{rReview,jdbcType=INTEGER}, #{rContent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vnasi.pojo.VnasiReview" >
+    insert into vnasi_review
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rOid != null" >
+        R_Oid,
+      </if>
+      <if test="epName != null" >
+        ep_name,
+      </if>
+      <if test="epFileName != null" >
+        ep_file_name,
+      </if>
+      <if test="rReview != null" >
+        R_review,
+      </if>
+      <if test="rContent != null" >
+        R_Content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rOid != null" >
+        #{rOid,jdbcType=INTEGER},
+      </if>
+      <if test="epName != null" >
+        #{epName,jdbcType=VARCHAR},
+      </if>
+      <if test="epFileName != null" >
+        #{epFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="rReview != null" >
+        #{rReview,jdbcType=INTEGER},
+      </if>
+      <if test="rContent != null" >
+        #{rContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.vnasi.pojo.VnasiReviewExample" resultType="java.lang.Integer" >
+    select count(*) from vnasi_review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update vnasi_review
+    <set >
+      <if test="record.rOid != null" >
+        R_Oid = #{record.rOid,jdbcType=INTEGER},
+      </if>
+      <if test="record.epName != null" >
+        ep_name = #{record.epName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.epFileName != null" >
+        ep_file_name = #{record.epFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rReview != null" >
+        R_review = #{record.rReview,jdbcType=INTEGER},
+      </if>
+      <if test="record.rContent != null" >
+        R_Content = #{record.rContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update vnasi_review
+    set R_Oid = #{record.rOid,jdbcType=INTEGER},
+      ep_name = #{record.epName,jdbcType=VARCHAR},
+      ep_file_name = #{record.epFileName,jdbcType=VARCHAR},
+      R_review = #{record.rReview,jdbcType=INTEGER},
+      R_Content = #{record.rContent,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vnasi.pojo.VnasiReview" >
+    update vnasi_review
+    <set >
+      <if test="epName != null" >
+        ep_name = #{epName,jdbcType=VARCHAR},
+      </if>
+      <if test="epFileName != null" >
+        ep_file_name = #{epFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="rReview != null" >
+        R_review = #{rReview,jdbcType=INTEGER},
+      </if>
+      <if test="rContent != null" >
+        R_Content = #{rContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where R_Oid = #{rOid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vnasi.pojo.VnasiReview" >
+    update vnasi_review
+    set ep_name = #{epName,jdbcType=VARCHAR},
+      ep_file_name = #{epFileName,jdbcType=VARCHAR},
+      R_review = #{rReview,jdbcType=INTEGER},
+      R_Content = #{rContent,jdbcType=VARCHAR}
+    where R_Oid = #{rOid,jdbcType=INTEGER}
+  </update>
+</mapper>

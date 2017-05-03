@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vnasi.mapper.VnasiNewsMapper" >
+  <resultMap id="BaseResultMap" type="com.vnasi.pojo.VnasiNews" >
+    <id column="en_id" property="enId" jdbcType="INTEGER" />
+    <result column="en_title" property="enTitle" jdbcType="VARCHAR" />
+    <result column="en_content" property="enContent" jdbcType="VARCHAR" />
+    <result column="en_create_time" property="enCreateTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    en_id, en_title, en_content, en_create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.vnasi.pojo.VnasiNewsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vnasi_news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vnasi_news
+    where en_id = #{enId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vnasi_news
+    where en_id = #{enId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.vnasi.pojo.VnasiNewsExample" >
+    delete from vnasi_news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.vnasi.pojo.VnasiNews" >
+    insert into vnasi_news (en_id, en_title, en_content, 
+      en_create_time)
+    values (#{enId,jdbcType=INTEGER}, #{enTitle,jdbcType=VARCHAR}, #{enContent,jdbcType=VARCHAR}, 
+      #{enCreateTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vnasi.pojo.VnasiNews" >
+    insert into vnasi_news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="enId != null" >
+        en_id,
+      </if>
+      <if test="enTitle != null" >
+        en_title,
+      </if>
+      <if test="enContent != null" >
+        en_content,
+      </if>
+      <if test="enCreateTime != null" >
+        en_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="enId != null" >
+        #{enId,jdbcType=INTEGER},
+      </if>
+      <if test="enTitle != null" >
+        #{enTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="enContent != null" >
+        #{enContent,jdbcType=VARCHAR},
+      </if>
+      <if test="enCreateTime != null" >
+        #{enCreateTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.vnasi.pojo.VnasiNewsExample" resultType="java.lang.Integer" >
+    select count(*) from vnasi_news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update vnasi_news
+    <set >
+      <if test="record.enId != null" >
+        en_id = #{record.enId,jdbcType=INTEGER},
+      </if>
+      <if test="record.enTitle != null" >
+        en_title = #{record.enTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enContent != null" >
+        en_content = #{record.enContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enCreateTime != null" >
+        en_create_time = #{record.enCreateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update vnasi_news
+    set en_id = #{record.enId,jdbcType=INTEGER},
+      en_title = #{record.enTitle,jdbcType=VARCHAR},
+      en_content = #{record.enContent,jdbcType=VARCHAR},
+      en_create_time = #{record.enCreateTime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vnasi.pojo.VnasiNews" >
+    update vnasi_news
+    <set >
+      <if test="enTitle != null" >
+        en_title = #{enTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="enContent != null" >
+        en_content = #{enContent,jdbcType=VARCHAR},
+      </if>
+      <if test="enCreateTime != null" >
+        en_create_time = #{enCreateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where en_id = #{enId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vnasi.pojo.VnasiNews" >
+    update vnasi_news
+    set en_title = #{enTitle,jdbcType=VARCHAR},
+      en_content = #{enContent,jdbcType=VARCHAR},
+      en_create_time = #{enCreateTime,jdbcType=VARCHAR}
+    where en_id = #{enId,jdbcType=INTEGER}
+  </update>
+</mapper>

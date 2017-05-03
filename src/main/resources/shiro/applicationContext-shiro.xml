@@ -1,0 +1,116 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<!-- 1. 配置 SecurityManager! -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="cacheManager" ref="cacheManager" />
+		<property name="authenticator" ref="authenticator" />
+		
+		<property name="realms">
+			<list>
+				<ref bean="jdbcRealm"/>
+				<!-- <ref bean="shiroRealm"/> -->
+			</list>
+		</property>
+		
+		<!-- 设置登录时长 半天12个小时、 -->
+		<property name="rememberMeManager.cookie.maxAge" value="43200"></property>
+	</bean>
+
+	<!-- 2. 配置 CacheManager. 2.1 需要加入 ehcache 的 jar 包及配置文件. -->
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile" value="classpath:shiro/ehcache.xml" />
+	</bean>
+	
+	<bean id="authenticator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
+		<!-- 认证策略
+			AllSuccessfulStrategy：所有Realm验证成功才算成功，且返回所有
+			Realm身份验证成功的认证信息，如果有一个失败就失败了
+		  	默认策略是 AtLeastOneSuccessfulStrategy：只要有一个Realm验证成功即可，
+		  	将返回所有Realm身份验证成功的认证信息
+		  -->
+		<!-- <property name="authenticationStrategy">
+			<bean class="org.apache.shiro.authc.pam.AllSuccessfulStrategy" />
+		</property> -->
+	</bean>
+
+	<!-- 3. 配置 多Realm验证:MD5 SHA1... 3.1 直接配置实现了 org.apache.shiro.realm.Realm 接口的 bean -->
+	<bean id="jdbcRealm" class="com.vnasi.realms.ShiroRealm">
+		<property name="credentialsMatcher">
+			<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+				<property name="hashAlgorithmName" value="MD5" />
+				<property name="hashIterations" value="1024" />
+			</bean>
+		</property>
+	</bean>
+	<!-- 暂时没用上 -->
+	<!-- <bean id="shiroRealm" class="com.vnasi.realms.SecondRealm">
+		<property name="credentialsMatcher">
+			<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+				<property name="hashAlgorithmName" value="SHA1" />
+				<property name="hashIterations" value="1024" />
+			</bean>
+		</property>
+	</bean> -->
+
+	<!-- 4. 配置 LifecycleBeanPostProcessor. 可以自定的来调用配置在 Spring IOC 容器中 shiro 
+		bean 的生命周期方法. -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+	<!-- 5. 启用 IOC 容器中使用 shiro 的注解. 但必须在配置了 LifecycleBeanPostProcessor 之后才可以使用. -->
+	<bean
+		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		depends-on="lifecycleBeanPostProcessor" />
+	<bean
+		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+
+	<!-- 6. 配置 ShiroFilter. 
+		6.1 id 必须和 web.xml 文件中配置的 DelegatingFilterProxy 
+		的 <filter-name> 一致. 若不一致, 则会抛出: NoSuchBeanDefinitionException. 因为 Shiro 会来 
+		IOC 容器中查找和 <filter-name> 名字对应的 filter bean. -->
+	 <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/path/toLogin"/>
+        <property name="successUrl" value="/path/toManageIndex"/>
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+              
+        <!-- 静态资源map -->
+		<property name="filterChainDefinitionMap" ref="filterChainDefinitionMap" />
+        <!--  
+        	配置哪些页面需要受保护. 
+        	以及访问这些页面需要的权限.  
+        	1). anon 可以被匿名访问
+        	2). authc 必须认证(即登录)后才可能访问的页面. 
+        	3). logout 登出.
+        	4). roles 角色过滤器
+        	5). user  cookie存在角色值就可以访问list.jsp
+        	6). authc,roles[admin] 必须登录并且还需要是admin权限
+        <property name="filterChainDefinitions">
+            <value>
+                /login.jsp = anon
+                /shiro/login = anon
+                /shiro/logout = logout
+                
+                /admin.jsp = authc,roles[admin]
+                /user.jsp = authc,roles[user]
+                /list.jsp = user
+                # everything else requires authentication:
+                /** = authc
+            </value>
+        </property>
+        --> 
+    </bean>
+	
+	<!-- 采用从数据表中初始化静态资源map  配置一个 bean, 该 bean 实际上是一个 Map. 通过实例工厂方法的方式-->
+	<bean id="filterChainDefinitionMap" factory-bean="filterChainDefinitionMapBuilder" factory-method="buildFilterChainDefinitionMap"></bean>
+	<bean id="filterChainDefinitionMapBuilder" class="com.vnasi.factory.FilterChainDefinitionMapBuilder"/>
+
+</beans>

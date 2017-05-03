@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vnasi.mapper.VnasiOrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.vnasi.pojo.VnasiOrderDetail" >
+    <id column="eod_id" property="eodId" jdbcType="INTEGER" />
+    <result column="eo_id" property="eoId" jdbcType="INTEGER" />
+    <result column="ep_id" property="epId" jdbcType="INTEGER" />
+    <result column="eod_quantity" property="eodQuantity" jdbcType="INTEGER" />
+    <result column="eod_cost" property="eodCost" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    eod_id, eo_id, ep_id, eod_quantity, eod_cost
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.vnasi.pojo.VnasiOrderDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vnasi_order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vnasi_order_detail
+    where eod_id = #{eodId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vnasi_order_detail
+    where eod_id = #{eodId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.vnasi.pojo.VnasiOrderDetailExample" >
+    delete from vnasi_order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.vnasi.pojo.VnasiOrderDetail" >
+    insert into vnasi_order_detail (eod_id, eo_id, ep_id, 
+      eod_quantity, eod_cost)
+    values (#{eodId,jdbcType=INTEGER}, #{eoId,jdbcType=INTEGER}, #{epId,jdbcType=INTEGER}, 
+      #{eodQuantity,jdbcType=INTEGER}, #{eodCost,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vnasi.pojo.VnasiOrderDetail" >
+    insert into vnasi_order_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eodId != null" >
+        eod_id,
+      </if>
+      <if test="eoId != null" >
+        eo_id,
+      </if>
+      <if test="epId != null" >
+        ep_id,
+      </if>
+      <if test="eodQuantity != null" >
+        eod_quantity,
+      </if>
+      <if test="eodCost != null" >
+        eod_cost,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eodId != null" >
+        #{eodId,jdbcType=INTEGER},
+      </if>
+      <if test="eoId != null" >
+        #{eoId,jdbcType=INTEGER},
+      </if>
+      <if test="epId != null" >
+        #{epId,jdbcType=INTEGER},
+      </if>
+      <if test="eodQuantity != null" >
+        #{eodQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="eodCost != null" >
+        #{eodCost,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.vnasi.pojo.VnasiOrderDetailExample" resultType="java.lang.Integer" >
+    select count(*) from vnasi_order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update vnasi_order_detail
+    <set >
+      <if test="record.eodId != null" >
+        eod_id = #{record.eodId,jdbcType=INTEGER},
+      </if>
+      <if test="record.eoId != null" >
+        eo_id = #{record.eoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.epId != null" >
+        ep_id = #{record.epId,jdbcType=INTEGER},
+      </if>
+      <if test="record.eodQuantity != null" >
+        eod_quantity = #{record.eodQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.eodCost != null" >
+        eod_cost = #{record.eodCost,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update vnasi_order_detail
+    set eod_id = #{record.eodId,jdbcType=INTEGER},
+      eo_id = #{record.eoId,jdbcType=INTEGER},
+      ep_id = #{record.epId,jdbcType=INTEGER},
+      eod_quantity = #{record.eodQuantity,jdbcType=INTEGER},
+      eod_cost = #{record.eodCost,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vnasi.pojo.VnasiOrderDetail" >
+    update vnasi_order_detail
+    <set >
+      <if test="eoId != null" >
+        eo_id = #{eoId,jdbcType=INTEGER},
+      </if>
+      <if test="epId != null" >
+        ep_id = #{epId,jdbcType=INTEGER},
+      </if>
+      <if test="eodQuantity != null" >
+        eod_quantity = #{eodQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="eodCost != null" >
+        eod_cost = #{eodCost,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where eod_id = #{eodId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vnasi.pojo.VnasiOrderDetail" >
+    update vnasi_order_detail
+    set eo_id = #{eoId,jdbcType=INTEGER},
+      ep_id = #{epId,jdbcType=INTEGER},
+      eod_quantity = #{eodQuantity,jdbcType=INTEGER},
+      eod_cost = #{eodCost,jdbcType=DOUBLE}
+    where eod_id = #{eodId,jdbcType=INTEGER}
+  </update>
+</mapper>

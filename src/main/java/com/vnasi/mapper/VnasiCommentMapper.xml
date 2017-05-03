@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vnasi.mapper.VnasiCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.vnasi.pojo.VnasiComment" >
+    <id column="ec_id" property="ecId" jdbcType="INTEGER" />
+    <result column="ec_content" property="ecContent" jdbcType="VARCHAR" />
+    <result column="ec_create_time" property="ecCreateTime" jdbcType="VARCHAR" />
+    <result column="ec_reply" property="ecReply" jdbcType="VARCHAR" />
+    <result column="ec_reply_time" property="ecReplyTime" jdbcType="VARCHAR" />
+    <result column="ec_nick_name" property="ecNickName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ec_id, ec_content, ec_create_time, ec_reply, ec_reply_time, ec_nick_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.vnasi.pojo.VnasiCommentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vnasi_comment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vnasi_comment
+    where ec_id = #{ecId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vnasi_comment
+    where ec_id = #{ecId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.vnasi.pojo.VnasiCommentExample" >
+    delete from vnasi_comment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.vnasi.pojo.VnasiComment" >
+    insert into vnasi_comment (ec_id, ec_content, ec_create_time, 
+      ec_reply, ec_reply_time, ec_nick_name
+      )
+    values (#{ecId,jdbcType=INTEGER}, #{ecContent,jdbcType=VARCHAR}, #{ecCreateTime,jdbcType=VARCHAR}, 
+      #{ecReply,jdbcType=VARCHAR}, #{ecReplyTime,jdbcType=VARCHAR}, #{ecNickName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.vnasi.pojo.VnasiComment" >
+    insert into vnasi_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ecId != null" >
+        ec_id,
+      </if>
+      <if test="ecContent != null" >
+        ec_content,
+      </if>
+      <if test="ecCreateTime != null" >
+        ec_create_time,
+      </if>
+      <if test="ecReply != null" >
+        ec_reply,
+      </if>
+      <if test="ecReplyTime != null" >
+        ec_reply_time,
+      </if>
+      <if test="ecNickName != null" >
+        ec_nick_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ecId != null" >
+        #{ecId,jdbcType=INTEGER},
+      </if>
+      <if test="ecContent != null" >
+        #{ecContent,jdbcType=VARCHAR},
+      </if>
+      <if test="ecCreateTime != null" >
+        #{ecCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ecReply != null" >
+        #{ecReply,jdbcType=VARCHAR},
+      </if>
+      <if test="ecReplyTime != null" >
+        #{ecReplyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ecNickName != null" >
+        #{ecNickName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.vnasi.pojo.VnasiCommentExample" resultType="java.lang.Integer" >
+    select count(*) from vnasi_comment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update vnasi_comment
+    <set >
+      <if test="record.ecId != null" >
+        ec_id = #{record.ecId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ecContent != null" >
+        ec_content = #{record.ecContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ecCreateTime != null" >
+        ec_create_time = #{record.ecCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ecReply != null" >
+        ec_reply = #{record.ecReply,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ecReplyTime != null" >
+        ec_reply_time = #{record.ecReplyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ecNickName != null" >
+        ec_nick_name = #{record.ecNickName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update vnasi_comment
+    set ec_id = #{record.ecId,jdbcType=INTEGER},
+      ec_content = #{record.ecContent,jdbcType=VARCHAR},
+      ec_create_time = #{record.ecCreateTime,jdbcType=VARCHAR},
+      ec_reply = #{record.ecReply,jdbcType=VARCHAR},
+      ec_reply_time = #{record.ecReplyTime,jdbcType=VARCHAR},
+      ec_nick_name = #{record.ecNickName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vnasi.pojo.VnasiComment" >
+    update vnasi_comment
+    <set >
+      <if test="ecContent != null" >
+        ec_content = #{ecContent,jdbcType=VARCHAR},
+      </if>
+      <if test="ecCreateTime != null" >
+        ec_create_time = #{ecCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ecReply != null" >
+        ec_reply = #{ecReply,jdbcType=VARCHAR},
+      </if>
+      <if test="ecReplyTime != null" >
+        ec_reply_time = #{ecReplyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ecNickName != null" >
+        ec_nick_name = #{ecNickName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ec_id = #{ecId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vnasi.pojo.VnasiComment" >
+    update vnasi_comment
+    set ec_content = #{ecContent,jdbcType=VARCHAR},
+      ec_create_time = #{ecCreateTime,jdbcType=VARCHAR},
+      ec_reply = #{ecReply,jdbcType=VARCHAR},
+      ec_reply_time = #{ecReplyTime,jdbcType=VARCHAR},
+      ec_nick_name = #{ecNickName,jdbcType=VARCHAR}
+    where ec_id = #{ecId,jdbcType=INTEGER}
+  </update>
+</mapper>
