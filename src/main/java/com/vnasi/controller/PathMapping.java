@@ -28,4 +28,9 @@ public class PathMapping {
 	public String manageIndex(){
 		return "manage/index";
 	}
+	
+	@RequestMapping("toUnAuthorized")
+	public String unauthorized(){
+		return "foreground/unauthorized";
+	}
 }
