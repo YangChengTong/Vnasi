@@ -55,7 +55,7 @@
 		<!-- /:会拦截所有请求包括静态资源,需要在springmvc.xml中添加静态资源的映射 然后在页面样式图片路径前加上绝对路径../ -->
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
+	<!-- shiro拦截 -->
 	<filter>
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -67,7 +67,7 @@
 
     <filter-mapping>
         <filter-name>shiroFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>*.do</url-pattern>
     </filter-mapping>
 </web-app>
 	

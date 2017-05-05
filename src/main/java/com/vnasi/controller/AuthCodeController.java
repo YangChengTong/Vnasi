@@ -37,7 +37,7 @@ public class AuthCodeController {
 		//四个随机数
 		Graphics2D graphics2d = (Graphics2D) graphics;
 		//设置输出字体
-		graphics2d.setFont(new Font("宋体",Font.BOLD,18));
+		graphics2d.setFont(new Font("宋体",Font.BOLD,23));
 		
 		//输出的字符创
 		String words = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";

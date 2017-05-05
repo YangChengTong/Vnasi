@@ -158,7 +158,7 @@
 	<div id="logo"><img src="../img/vnasi.com.logo.png"/></div>
     <div id="pic"><img src="../img/login_mian.png" /></div>
     <div id="right">
-    <form id = "zong" action="${pageContext.request.contextPath}/user/login" method="post">
+    <form id = "zong" action="${pageContext.request.contextPath}/user/login.do" method="post">
     <table border="0" width="100%" cellpadding="5">
     	<tr>
         	<td><h2>会员登录</h2></td>
@@ -173,14 +173,14 @@
         	</td>
             <td><div id = "textH"></div></td>
         </tr>
-        <tr>
+        <tr> 
         	<td><img src="../img/pwd.png" height="38" /><input id = "pwd" class="pwd" type="password" name="password" value="" placeholder="有效密码" /></td>
             <td><div id = "pwdH"></div></td>
         </tr>
         	<%-- <%String messg =request.getAttribute("messg");%> <div><%=messg %></div> --%>
          <tr> 
         	<td style="width: 390px; height: 48px;" colspan="2">验证码：<input type="text" id="checkcode" name="checkcode" placeholder="验证码"/>
-        	<img id="codeimg" src="${pageContext.request.contextPath}/authCode" onclick="refresh()" width="120" height="38" /><a href="">看不清，换一张</a><div class="mess"></div></td>
+        	<img id="codeimg" src="${pageContext.request.contextPath}/authCode" onclick="refresh()" width="120" height="38" /><a onclick="refresh()">看不清，换一张</a><div class="mess"></div></td>
         </tr>
         <tr>
         	<td><input class="btn" type="submit" value="确认登录"/></td>
