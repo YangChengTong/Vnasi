@@ -10,7 +10,7 @@
 	<context:component-scan base-package="com.vnasi.controller" />
 	<mvc:annotation-driven />
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/" /> <!-- 这里直接解析WEB-INF下是因为前后台的页面分别在不同的文件夹里，返回映射路劲就是前/index.jsp 后/index.jsp -->
+		<property name="prefix" value="/WEB-INF/" /> <!-- 这里直接解析WEB-INF下是因为前后台的页面分别在不同的文件夹里，返回映射路劲就是前文件夹/index.jsp 后文件夹/index.jsp -->
 		<property name="suffix" value=".jsp" />
 	</bean>
 	 
