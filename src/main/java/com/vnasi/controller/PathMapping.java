@@ -4,33 +4,33 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("path")
+@RequestMapping("/path")
 public class PathMapping {
-	@RequestMapping("toRegister")
+	@RequestMapping("/toRegister")
 	public String register(){
-		return "foreground/register";
+		return "/foreground/register";
 	}
-	@RequestMapping("toLogin")
+	@RequestMapping("/toLogin")
 	public String login(){
-		return "foreground/login";
+		return "/foreground/login";
 	}
 	
-	@RequestMapping("toForegroundHead")
+	@RequestMapping("/toForegroundHead")
 	public String foregroundHead(){
-		return "foreground/head";
+		return "/foreground/head";
 	}
 	
-	@RequestMapping("toForegroundTail")
+	@RequestMapping("/toForegroundTail")
 	public String foregroundtail(){
-		return "foreground/tail";
+		return "/foreground/tail";
 	}
-	@RequestMapping("toManageIndex")
+	@RequestMapping("/toManageIndex")
 	public String manageIndex(){
-		return "manage/index";
+		return "/manage/index";
 	}
 	
-	@RequestMapping("toUnAuthorized")
+	@RequestMapping("/toUnAuthorized")
 	public String unauthorized(){
-		return "foreground/unauthorized";
+		return "/foreground/unauthorized";
 	}
 }

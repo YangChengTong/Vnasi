@@ -166,21 +166,21 @@
         </tr>
         <tr>
         	<td><img src="../img/user.png" height="38" />
-	        	<c:if test="${userName != null}">
-	        		<input id ="text" class="text" type="text" name="userName" value="${userName }" placeholder="有效账户名"/>
+	        	<c:if test="${userId != null}">
+	        		<input id ="text" class="text" type="text" name="userId" value="${userId }" placeholder="有效账户名"/>
 	        	</c:if>
-		        	<input id ="text" class="text" type="text" name="userName" value="" placeholder="有效账户名"/>
+		        	<input id ="text" class="text" type="text" name="userId" value="" placeholder="有效账户名"/>
         	</td>
             <td><div id = "textH"></div></td>
         </tr>
-        <tr>
+        <tr> 
         	<td><img src="../img/pwd.png" height="38" /><input id = "pwd" class="pwd" type="password" name="password" value="" placeholder="有效密码" /></td>
             <td><div id = "pwdH"></div></td>
         </tr>
         	<%-- <%String messg =request.getAttribute("messg");%> <div><%=messg %></div> --%>
          <tr> 
         	<td style="width: 390px; height: 48px;" colspan="2">验证码：<input type="text" id="checkcode" name="checkcode" placeholder="验证码"/>
-        	<img id="codeimg" src="${pageContext.request.contextPath}/authCode" onclick="refresh()" width="120" height="38" /><a href="">看不清，换一张</a><div class="mess"></div></td>
+        	<img id="codeimg" src="${pageContext.request.contextPath}/authCode" onclick="refresh()" width="120" height="38" /><a onclick="refresh()">看不清，换一张</a><div class="mess"></div></td>
         </tr>
         <tr>
         	<td><input class="btn" type="submit" value="确认登录"/></td>

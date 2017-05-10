@@ -11,17 +11,19 @@ public class FilterChainDefinitionMapBuilder {
 		public LinkedHashMap<String, String> buildFilterChainDefinitionMap(){
 			LinkedHashMap<String, String> hashMap = new LinkedHashMap<String, String>();
 			
-			hashMap.put("/user/login.do", "anon");
-			hashMap.put("/path/toLogin", "anon");
+			hashMap.put("/path/**", "anon");
 			
+			hashMap.put("/user/login", "anon");
+			hashMap.put("/authCode", "anon");
 			
-			/*hashMap.put("/css/**", "anon");
+			hashMap.put("/path/logout", "logout");
+			
+			hashMap.put("/css/**", "anon");
 			hashMap.put("/files/**", "anon");
 			hashMap.put("/images/**", "anon");
 			hashMap.put("/img/**", "anon");
 			hashMap.put("/js/**", "anon");
-			hashMap.put("/scripts/**", "anon");*/
-			hashMap.put("/path/logout", "logout");
+			hashMap.put("/scripts/**", "anon");
 			
 			hashMap.put("/**", "authc");
 			return hashMap;

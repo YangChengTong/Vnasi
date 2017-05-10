@@ -16,7 +16,7 @@ import com.vnasi.pojo.VnasiUser;
 import com.vnasi.service.UserService;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
 	/**
 	 * Logger for this class
@@ -26,7 +26,7 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
-	@RequestMapping("register")
+	@RequestMapping("/register")
 	public String register(VnasiUser user,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//response.setContentType("text/html;charset=utf-8");
 		//PrintWriter out = response.getWriter();
@@ -37,14 +37,18 @@ public class UserController {
 		int register = service.register(user);
 		if(register>0){
 			//out.print("<script>alert('注册成功！');location.href={pageContext.request.contextPath}/foreground/login</script>");
-			request.getSession().setAttribute("userName", user.getUserId());
+			request.getSession().setAttribute("userId", user.getUserId());
 			return "foreground/login";
 		}
 		return "foreground/register";
 	}
 	
-	@RequestMapping("login")
+	@RequestMapping("/login")
 	public String login(VnasiUser user,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		/*IniSecurityManagerFactory iniSecurityManagerFactory = new IniSecurityManagerFactory("classpath:shiro/shiro.ini");  
+		// 创建SecurityManager (根据配置创建SecurityManager实例)  
+		SecurityManager instance = iniSecurityManagerFactory.getInstance();  
+		SecurityUtils.setSecurityManager(instance); */
 		// 获取当前的 Subject. 调用 SecurityUtils.getSubject();
         Subject currentUser = SecurityUtils.getSubject();
 		String input = request.getParameter("checkcode");   							//输入的验证码
@@ -71,15 +75,15 @@ public class UserController {
 				if(null!=user2){
 					request.getSession().setAttribute("currentUser", user2);
 					if(user2.getStatus()==2){//如果是管理员就去到后台
-						return "manage/index";
+						return "/manage/index";
 					}else{//普通用户来到首页
-						return "foreground/index";
+						return "/foreground/index";
 					}
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "foreground/login";
+		return "/foreground/login";
 	}
 }

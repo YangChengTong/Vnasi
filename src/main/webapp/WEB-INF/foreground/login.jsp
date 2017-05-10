@@ -158,7 +158,7 @@
 	<div id="logo"><img src="../img/vnasi.com.logo.png"/></div>
     <div id="pic"><img src="../img/login_mian.png" /></div>
     <div id="right">
-    <form id = "zong" action="${pageContext.request.contextPath}/user/login.do" method="post">
+    <form id = "zong" action="${pageContext.request.contextPath}/user/login" method="post">
     <table border="0" width="100%" cellpadding="5">
     	<tr>
         	<td><h2>会员登录</h2></td>
@@ -166,10 +166,10 @@
         </tr>
         <tr>
         	<td><img src="../img/user.png" height="38" />
-	        	<c:if test="${userName != null}">
-	        		<input id ="text" class="text" type="text" name="userName" value="${userName }" placeholder="有效账户名"/>
+	        	<c:if test="${userId != null}">
+	        		<input id ="text" class="text" type="text" name="userId" value="${userId }" placeholder="有效账户名"/>
 	        	</c:if>
-		        	<input id ="text" class="text" type="text" name="userName" value="" placeholder="有效账户名"/>
+		        	<input id ="text" class="text" type="text" name="userId" value="" placeholder="有效账户名"/>
         	</td>
             <td><div id = "textH"></div></td>
         </tr>

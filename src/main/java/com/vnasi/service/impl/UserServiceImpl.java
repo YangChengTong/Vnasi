@@ -26,8 +26,8 @@ public class UserServiceImpl implements UserService {
 		Criteria createCriteria = userExample.createCriteria();
 		
 		if(null!=user && !"".equals(user)){
-			if(null!=user.getUserName() && !"".equals(user.getUserName())){
-				createCriteria.andUserNameEqualTo(user.getUserName());
+			if(null!=user.getUserId() && !"".equals(user.getUserId())){
+				createCriteria.andUserIdEqualTo(user.getUserId());
 			}
 			if(null!=user.getPassword() && !"".equals(user.getPassword())){
 				createCriteria.andPasswordEqualTo(user.getPassword());
