@@ -14,9 +14,9 @@ public class FilterChainDefinitionMapBuilder {
 			hashMap.put("/path/**", "anon");
 			
 			hashMap.put("/user/login", "anon");
+			hashMap.put("/foreground/index", "authc,roles[admin]");
 			hashMap.put("/authCode", "anon");
 			
-			hashMap.put("/path/logout", "logout");
 			
 			hashMap.put("/css/**", "anon");
 			hashMap.put("/files/**", "anon");
