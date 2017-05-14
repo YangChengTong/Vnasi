@@ -33,4 +33,10 @@ public class PathMapping {
 	public String unauthorized(){
 		return "/foreground/unauthorized";
 	}
+	
+	@RequestMapping("/NewFile")
+	public String NewFile(){
+		return "/NewFiles";
+	}
+	
 }

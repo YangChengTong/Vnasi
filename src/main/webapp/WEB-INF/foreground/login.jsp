@@ -83,7 +83,7 @@
 	width: 180px; height: 1px;
 }
 </style>
-<script src="../js/jquery-1.8.3.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery-1.8.3.js"></script>
 <script type ="text/javascript">
 			function refresh(){
 				document.getElementById('codeimg').src = '${pageContext.request.contextPath}/authCode?ts='+new Date().getTime();
@@ -155,8 +155,8 @@
 
 <body>
 <div id="container">
-	<div id="logo"><img src="../img/vnasi.com.logo.png"/></div>
-    <div id="pic"><img src="../img/login_mian.png" /></div>
+	<div id="logo"><img src="<%=request.getContextPath()%>/img/vnasi.com.logo.png"/></div>
+    <div id="pic"><img src="<%=request.getContextPath()%>/img/login_mian.png" /></div>
     <div id="right">
     <form id = "zong" action="${pageContext.request.contextPath}/user/login" method="post">
     <table border="0" width="100%" cellpadding="5">
@@ -165,7 +165,7 @@
             <td width="155"></td>
         </tr>
         <tr>
-        	<td><img src="../img/user.png" height="38" />
+        	<td><img src="<%=request.getContextPath()%>/img/user.png" height="38" />
 	        	<c:if test="${userId != null}">
 	        		<input id ="text" class="text" type="text" name="userId" value="${userId }" placeholder="有效账户名"/>
 	        	</c:if>
@@ -174,7 +174,7 @@
             <td><div id = "textH"></div></td>
         </tr>
         <tr> 
-        	<td><img src="../img/pwd.png" height="38" /><input id = "pwd" class="pwd" type="password" name="password" value="" placeholder="有效密码" /></td>
+        	<td><img src="<%=request.getContextPath()%>/img/pwd.png" height="38" /><input id = "pwd" class="pwd" type="password" name="password" value="" placeholder="有效密码" /></td>
             <td><div id = "pwdH"></div></td>
         </tr>
         	<%-- <%String messg =request.getAttribute("messg");%> <div><%=messg %></div> --%>
