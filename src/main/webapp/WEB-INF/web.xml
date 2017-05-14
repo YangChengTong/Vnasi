@@ -52,7 +52,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Vnasi</servlet-name>
-		<!-- /:会拦截所有请求包括静态资源,需要在springmvc.xml中添加静态资源的映射 然后在页面样式图片路径前加上绝对路径../ -->
+		<!-- /:会拦截所有请求包括静态资源,需要在springmvc.xml中添加静态资源的映射 然后在页面样式图片路径前加上绝对路径<%=request.getContextPath()%>/ -->
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	

@@ -10,25 +10,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>后台管理 - 维纳斯花店</title>
-<link type="text/css" rel="stylesheet" href="../css/style.css" />
-<script type="text/javascript" src="../scripts/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="../scripts/function.js"></script>
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css" />
+<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/function.js"></script>
 </head>
 <body>
 	<div id="header" class="wrap">
 		<div id="logo">
-			<img src="../img/vnasi.com.logo.png" style="width: 120px;" />
+			<img src="<%=request.getContextPath()%>/img/vnasi.com.logo.png" style="width: 120px;" />
 		</div>
 		<div class="help">
-			<a href="../index.jsp">返回前台页面</a>
+			<a href="<%=request.getContextPath()%>/index.jsp">返回前台页面</a>
 		</div>
 		<div class="navbar">
 			<ul class="clearfix">
 				<li><a href="index.jsp">首页</a></li>
 				<li><a href="user.jsp">用户</a></li>
 				<li><a href="product.jsp">商品</a></li>
-				<li><a href="../Vnasi_orderServlet?opr=list">订单</a></li>
-				<li class="current"><a href="../Vnasi_reviewServlet?opr=list">评论</a></li>
+				<li><a href="<%=request.getContextPath()%>/Vnasi_orderServlet?opr=list">订单</a></li>
+				<li class="current"><a href="<%=request.getContextPath()%>/Vnasi_reviewServlet?opr=list">评论</a></li>
 				<li><a href="guestbook.jsp">留言</a></li>
 				<li><a href="news.jsp">新闻</a></li>
 			</ul>
@@ -45,11 +45,11 @@
 		<div class="welcome wrap">
 			<c:if test="${user.status==1 }">
 		普通用户: ${user.id }您好，今天是<%=dateString%>，欢迎回到管理后台。<a
-					href="../UserServlet?opr=exit" style="color:blue;font-weight:bold;">退出账号</a>
+					href="<%=request.getContextPath()%>/UserServlet?opr=exit" style="color:blue;font-weight:bold;">退出账号</a>
 			</c:if>
 			<c:if test="${user.status==2 }">
 		管理员: ${user.id }您好，今天是<%=dateString%>，欢迎回到管理后台。<a
-					href="../UserServlet?opr=exit" style="color:blue;font-weight:bold;">退出账号</a>
+					href="<%=request.getContextPath()%>/UserServlet?opr=exit" style="color:blue;font-weight:bold;">退出账号</a>
 			</c:if>
 		</div>
 	</div>
@@ -66,7 +66,7 @@
 					</dd>
 					<dt>商品信息</dt>
 					<dd>
-						<em><a href="../ProductServlet?opr=selectFu">新增</a></em><a
+						<em><a href="<%=request.getContextPath()%>/ProductServlet?opr=selectFu">新增</a></em><a
 							href="productClass.jsp">分类管理</a>
 					</dd>
 					<dd>
@@ -74,11 +74,11 @@
 					</dd>
 					<dt>订单管理</dt>
 					<dd>
-						<a href="../Vnasi_orderServlet?opr=list">订单管理</a>
+						<a href="<%=request.getContextPath()%>/Vnasi_orderServlet?opr=list">订单管理</a>
 					</dd>
 					<dt>评论管理</dt>
 					<dd>
-						<a href="../Vnasi_reviewServlet?opr=list">评论管理</a>
+						<a href="<%=request.getContextPath()%>/Vnasi_reviewServlet?opr=list">评论管理</a>
 					</dd>
 					<dt>留言管理</dt>
 					<dd>
@@ -114,7 +114,7 @@
 
 							<tr>
 								<td>${r.eo_id}</td>
-								<td><img src="../files/${r.review.product.ep_file_name }" width="50"
+								<td><img src="<%=request.getContextPath()%>/files/${r.review.product.ep_file_name }" width="50"
 									height="50" /> ${r.review.product.ep_name }</td>
 								<td>&nbsp;&nbsp; <c:if test="${r.review.r_Content==''}">
 										<c:if test="${r.review.r_review==1}">
@@ -157,7 +157,7 @@
 								<td><input type="text" name="xiangqing"
 									value="${r.review.r_Content}" readonly="readonly" /></td>
 								<td>
-								<c:if test="${r.review.r_Content==null}"><a href="../Vnasi_reviewServlet?opr=select&id=${r.review.r_Oid}">
+								<c:if test="${r.review.r_Content==null}"><a href="<%=request.getContextPath()%>/Vnasi_reviewServlet?opr=select&id=${r.review.r_Oid}">
 								评价</a></c:if>
 								<c:if test="${r.review.r_Content!=null}">已经评价</c:if>
 							</td>

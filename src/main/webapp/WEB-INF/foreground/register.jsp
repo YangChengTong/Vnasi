@@ -4,8 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
-<script type="text/javascript" src="../scripts/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/My97DatePicker/WdatePicker.js"></script>
 <title>无标题文档</title>
     <style>
     /*当鼠标放到文本框时，提示文本的样式*/
@@ -21,7 +21,7 @@
     .error_prompt{
 	border:solid 1px #ff3300;
 	background-color:#fff2e5;
-	background-image:url("../img/li_err.gif");
+	background-image:url("<%=request.getContextPath()%>/img/li_err.gif");
 	background-repeat:no-repeat;
 	background-position:5px 2px;
 	padding:2px 5px 0px 25px;
@@ -32,7 +32,7 @@
     .ok_prompt{
 	border:solid 1px #01be00;
 	background-color:#e6fee4;
-	background-image:url("../img/li_ok.gif");
+	background-image:url("<%=request.getContextPath()%>/img/li_ok.gif");
 	background-repeat:no-repeat;
 	background-position:5px 2px;
 	padding:2px 5px 0px 25px;
@@ -83,7 +83,7 @@
 			float:left;
 			}
     </style>
-    <script src="../js/jquery-1.8.3.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/js/jquery-1.8.3.js" type="text/javascript"></script>
     <script type ="text/javascript">
        var cityList = new Array();//数组中的每一项都是一个单独的数组
         cityList['北京市'] = ['朝阳区', '东城区', '西城区', '海淀区', '宣武区', '丰台区', '怀柔', '延庆', '房山'];
@@ -324,7 +324,7 @@
 <form id ="form1" action="${pageContext.request.contextPath}/user/register" method="post">
 <table width="800" height="583" border="0">
   <tr>
-    <td width="160"><img src="../img/vnasi.com.logo.png"/></td>
+    <td width="160"><img src="<%=request.getContextPath()%>/img/vnasi.com.logo.png"/></td>
     <td colspan="2"><h1>欢迎新用户注册</h1></td>
   </tr>
   <tr  >

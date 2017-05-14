@@ -5,9 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
-<link type="text/css" rel="stylesheet" href="../css/vnsindex.css" />
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/vnsindex.css" />
 
-<script src="../js/jquery-1.8.3.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery-1.8.3.js"></script>
 
 
 <script type="text/javascript">
@@ -94,9 +94,9 @@
 	<div class="maximg">
 		<div id="content" class="scroll_mid">
 			<ul id="scroll_img">
-				<li><img src="../img/daimg2.jpg" width="900" height="240" /></li>
-				<li><img src="../img/daimg1.jpg" width="900" height="240" /></li>
-				<li><img src="../img/daimg3.jpg" width="900" height="240" /></li>
+				<li><img src="<%=request.getContextPath()%>/img/daimg2.jpg" width="900" height="240" /></li>
+				<li><img src="<%=request.getContextPath()%>/img/daimg1.jpg" width="900" height="240" /></li>
+				<li><img src="<%=request.getContextPath()%>/img/daimg3.jpg" width="900" height="240" /></li>
 
 			</ul>
 			<ul id="scroll_number" class="imgli">
@@ -116,7 +116,7 @@
 			<div style="width:1024px; height:10px; "></div>
 			<div class="dingdan1">
 				<div style="width:110px; height:40px; float:left;">
-					<img src="../img/dindan.png" />
+					<img src="<%=request.getContextPath()%>/img/dindan.png" />
 				</div>
 				<div class="diangdanul" id="zi">
 					<ul id="express">
@@ -129,7 +129,7 @@
 			</div>
 			<div class="xingwen" id="zi1">
 				<div style="width:105px; height:40px; float:left;">
-					<img src="../img/xingwen.png" />
+					<img src="<%=request.getContextPath()%>/img/xingwen.png" />
 				</div>
 				<ul id="express1">
 					<c:forEach var="list" items="">
@@ -141,23 +141,23 @@
 		<div class="you1">
 			<table>
 				<tr>
-					<td width="240"><img src="../img/you1.png" width="220"
+					<td width="240"><img src="<%=request.getContextPath()%>/img/you1.png" width="220"
 						height="220" /></td>
-					<td width="240"><img src="../img/you2.png" width="220"
+					<td width="240"><img src="<%=request.getContextPath()%>/img/you2.png" width="220"
 						height="220" /></td>
-					<td width="240"><img src="../img/you3.png" width="220"
+					<td width="240"><img src="<%=request.getContextPath()%>/img/you3.png" width="220"
 						height="220" /></td>
-					<td width="240"><img src="../img/you4.png" width="220"
+					<td width="240"><img src="<%=request.getContextPath()%>/img/you4.png" width="220"
 						height="220" /></td>
 				</tr>
 			</table>
 		</div>
 		<div class="f1">
 			<div class="f1img">
-				<img src="../img/1f.png" />
-				<img src="../img/2f.png" />
-				<img src="../img/3f.png" />
-				<img src="../img/4f.png" />
+				<img src="<%=request.getContextPath()%>/img/1f.png" />
+				<img src="<%=request.getContextPath()%>/img/2f.png" />
+				<img src="<%=request.getContextPath()%>/img/3f.png" />
+				<img src="<%=request.getContextPath()%>/img/4f.png" />
 			</div>
 			<div class="f1geng">
 				<span><a href="#">更多>></a></span>
@@ -166,7 +166,7 @@
 
 		<div class="hua">
 			<div class="hua1">
-				<img src="../img/xswl.png" width="215" height="555" />
+				<img src="<%=request.getContextPath()%>/img/xswl.png" width="215" height="555" />
 			</div>
 
 			<div style="width:683px; height:552px;  float:left;">
@@ -183,7 +183,7 @@
 							<li>已售:108件</li>
 							<li><a
 								href="#"><img
-									src="../img/lijigoumai.png" /></a></li>
+									src="<%=request.getContextPath()%>/img/lijigoumai.png" /></a></li>
 						</ul>
 					</div>
 				</c:forEach>
@@ -193,7 +193,7 @@
 		<!--2楼-->
 		<div class="f1">
 			<div class="f1img">
-				<img src="../img/2f.png" />
+				<img src="<%=request.getContextPath()%>/img/2f.png" />
 			</div>
 			<div class="f1geng">
 				<span><a href="#">更多>></a></span>
@@ -212,14 +212,14 @@
 							<ul>
 								<li>￥</li>
 								<li>已售:108件</li>
-								<li><img src="../img/lijigoumai.png" /></li>
+								<li><img src="<%=request.getContextPath()%>/img/lijigoumai.png" /></li>
 							</ul>
 						</div>
 					</c:forEach>
 				</div>
 			</div>
 			<div class="Fhua1">
-				<img src="../img/xjchun.png" width="215" height="555" />
+				<img src="<%=request.getContextPath()%>/img/xjchun.png" width="215" height="555" />
 			</div>
 		</div>
 		<!--2楼-->
@@ -227,7 +227,7 @@
 		<!--3楼-->
 		<div class="f1">
 			<div class="f1img">
-				<img src="../img/3f.png" />
+				<img src="<%=request.getContextPath()%>/img/3f.png" />
 			</div>
 			<div class="f1geng">
 				<span><a href="#">更多>></a></span>
@@ -235,7 +235,7 @@
 		</div>
 		<div class="hua">
 			<div class="hua1">
-				<img src="../img/dangao.png" width="215" height="555" />
+				<img src="<%=request.getContextPath()%>/img/dangao.png" width="215" height="555" />
 			</div>
 			<div style="width:683px; height:552px;  float:left;">
 				<c:forEach var="list" items="">
@@ -248,7 +248,7 @@
 						<ul>
 							<li>￥</li>
 							<li>已售:108件</li>
-							<li><img src="../img/lijigoumai.png" /></li>
+							<li><img src="<%=request.getContextPath()%>/img/lijigoumai.png" /></li>
 						</ul>
 					</div>
 				</c:forEach>
@@ -258,7 +258,7 @@
 		<!--3f-->
 		<div class="f1">
 			<div class="f1img">
-				<img src="../img/4f.png" />
+				<img src="<%=request.getContextPath()%>/img/4f.png" />
 			</div>
 			<div class="f1geng">
 				<span><a href="#">更多>></a></span>
@@ -277,19 +277,19 @@
 							<ul>
 								<li>￥</li>
 								<li>已售:108件</li>
-								<li><img src="../img/lijigoumai.png" /></li>
+								<li><img src="<%=request.getContextPath()%>/img/lijigoumai.png" /></li>
 							</ul>
 						</div>
 					</c:forEach>
 				</div>
 			</div>
 			<div class="Fhua1">
-				<img src="../img/katon.png" width="215" height="555" />
+				<img src="<%=request.getContextPath()%>/img/katon.png" width="215" height="555" />
 			</div>
 		</div>
 
 		<div style="width:900px; height:500px; float:left;">
-			<a href="#"><img src="../img/stop.png" width="900" height="500" /></a>
+			<a href="#"><img src="<%=request.getContextPath()%>/img/stop.png" width="900" height="500" /></a>
 		</div>
 	</div>
 

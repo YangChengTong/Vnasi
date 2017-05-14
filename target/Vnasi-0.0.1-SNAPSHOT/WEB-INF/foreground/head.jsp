@@ -6,8 +6,8 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
-<link type="text/css" rel="stylesheet" href="../css/vnashead.css" />
-<script src="../js/jquery-1.8.3.js"></script>
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/vnashead.css" />
+<script src="<%=request.getContextPath()%>/js/jquery-1.8.3.js"></script>
 <script type="text/javascript" >
 	$(function(){
 		
@@ -69,7 +69,7 @@
         <div class="sousou">
         	<div class="sousou1">
             	<div class="sousouimg">
-            	<img src="../img/wns.png" />
+            	<img src="<%=request.getContextPath()%>/img/wns.png" />
                 
                 </div>
                     <div style="float:right; height:27px; width:700px;  "></div>
@@ -78,7 +78,7 @@
                           <div style="width:130px; height:23px; float:right; margin:auto; ">
                           		
                                 <div style="float:left">
-                                    <img src="../img/gouwuche.png" height="20px" />
+                                    <img src="<%=request.getContextPath()%>/img/gouwuche.png" height="20px" />
                                 </div>
                                 <div id = "zong">
                                 <span class="shoop" id ="gowuche"> 去购物车结算</span>

@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>后台管理 - 维纳斯花店</title>
-<link type="text/css" rel="stylesheet" href="../css/style.css" />
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css" />
 <style type ="text/css">
    .import_prompt{
 	border:solid 1px #ffcd00;
@@ -19,7 +19,7 @@
     .error_prompt{
 	border:solid 1px #ff3300;
 	background-color:#fff2e5;
-	background-image:url(../img/li_err.gif);
+	background-image:url(<%=request.getContextPath()%>/img/li_err.gif);
 	background-repeat:no-repeat;
 	background-position:5px 2px;
 	padding:2px 5px 0px 25px;
@@ -29,14 +29,14 @@
     .ok_prompt{
 	border:solid 1px #01be00;
 	background-color:#e6fee4;
-	background-image:url(../img/li_ok.gif);
+	background-image:url(<%=request.getContextPath()%>/img/li_ok.gif);
 	background-repeat:no-repeat;
 	background-position:5px 2px;
 	padding:2px 5px 0px 25px;
 	line-height:20px;
 	}
     </style>
-<script src="../js/jquery-1.8.3.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery-1.8.3.js"></script>
 <script type ="text/javascript">
 function checkName() {
     var productName = $("#productName").val();
@@ -128,15 +128,15 @@ function checkProductNumber() {
 </head>
 <body>
 <div id="header" class="wrap">
-	<div id="logo"><img src="../img/vnasi.com.logo.png" style="width: 120px;" /></div>
-	<div class="help"><a href="../index.jsp">返回前台页面</a></div>
+	<div id="logo"><img src="<%=request.getContextPath()%>/img/vnasi.com.logo.png" style="width: 120px;" /></div>
+	<div class="help"><a href="<%=request.getContextPath()%>/index.jsp">返回前台页面</a></div>
 	<div class="navbar">
 		<ul class="clearfix">
 			<li><a href="index.jsp">首页</a></li>
 			<li><a href="user.jsp">用户</a></li>
 			<li class="current"><a href="product.jsp">商品</a></li>
-			<li><a href="../Vnasi_orderServlet?opr=list">订单</a></li>
-			<li><a href="../Vnasi_reviewServlet?opr=list">评论</a></li>
+			<li><a href="<%=request.getContextPath()%>/Vnasi_orderServlet?opr=list">订单</a></li>
+			<li><a href="<%=request.getContextPath()%>/Vnasi_reviewServlet?opr=list">评论</a></li>
 			<li><a href="guestbook.jsp">留言</a></li>
 			<li><a href="news.jsp">新闻</a></li>
 		</ul>
@@ -151,10 +151,10 @@ function checkProductNumber() {
 <div id="childNav">
 	<div class="welcome wrap">
 	<c:if test="${user.status==1 }">
-		普通用户: ${user.id }您好，今天是<%=dateString %>，欢迎回到管理后台。<a href = "../UserServlet?opr=exit" style = "color:blue;font-weight:bold;">退出账号</a>
+		普通用户: ${user.id }您好，今天是<%=dateString %>，欢迎回到管理后台。<a href = "<%=request.getContextPath()%>/UserServlet?opr=exit" style = "color:blue;font-weight:bold;">退出账号</a>
 	</c:if>
 	<c:if test="${user.status==2 }">
-		管理员: ${user.id }您好，今天是<%=dateString %>，欢迎回到管理后台。<a href = "../UserServlet?opr=exit" style = "color:blue;font-weight:bold;">退出账号</a>
+		管理员: ${user.id }您好，今天是<%=dateString %>，欢迎回到管理后台。<a href = "<%=request.getContextPath()%>/UserServlet?opr=exit" style = "color:blue;font-weight:bold;">退出账号</a>
 	</c:if>
 	</div>
 </div>
@@ -168,12 +168,12 @@ function checkProductNumber() {
 				<dt>用户管理</dt>
 				<dd><a href="user.jsp">用户管理</a></dd>
 			  <dt>商品信息</dt>
-				<dd><em><a href="../ProductServlet?opr=selectFu">新增</a></em><a href="../ProductServlet?opr=list">分类管理</a></dd>
-				<dd><em><a href="../ShoppingServlet?opr=insert">新增</a></em><a href="product.jsp">商品管理</a></dd>
+				<dd><em><a href="<%=request.getContextPath()%>/ProductServlet?opr=selectFu">新增</a></em><a href="<%=request.getContextPath()%>/ProductServlet?opr=list">分类管理</a></dd>
+				<dd><em><a href="<%=request.getContextPath()%>/ShoppingServlet?opr=insert">新增</a></em><a href="product.jsp">商品管理</a></dd>
 				<dt>订单管理</dt>
-				<dd><a href="../Vnasi_orderServlet?opr=list">订单管理</a></dd>
+				<dd><a href="<%=request.getContextPath()%>/Vnasi_orderServlet?opr=list">订单管理</a></dd>
 				<dt>评论管理</dt>
-				<dd><a href="../Vnasi_reviewServlet?opr=list">评论管理</a></dd>
+				<dd><a href="<%=request.getContextPath()%>/Vnasi_reviewServlet?opr=list">评论管理</a></dd>
 				<dt>留言管理</dt>
 				<dd><a href="guestbook.jsp">留言管理</a></dd>
 				<dt>新闻管理</dt>
@@ -184,7 +184,7 @@ function checkProductNumber() {
 	<div class="main">
 		<h2>添加商品</h2>
 		<div class="manage">
-			<form action="../ShoppingServlet?opr=inserts" method="post" enctype="multipart/form-data" id="zong">
+			<form action="<%=request.getContextPath()%>/ShoppingServlet?opr=inserts" method="post" enctype="multipart/form-data" id="zong">
 				<table class="form">
 					<tr>
 						<td class="field">商品名称(*)：</td>

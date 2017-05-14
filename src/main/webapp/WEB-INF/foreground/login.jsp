@@ -22,7 +22,7 @@
     .error_prompt{
 	border:solid 1px #ff3300;
 	background-color:#fff2e5;
-	background-image:url(../img/li_err.gif);
+	background-image:url(<%=request.getContextPath()%>/img/li_err.gif);
 	background-repeat:no-repeat;
 	background-position:5px 2px;
 	padding:2px 5px 0px 25px;
@@ -32,7 +32,7 @@
     .ok_prompt{
 	border:solid 1px #01be00;
 	background-color:#e6fee4;
-	background-image:url(../img/li_ok.gif);
+	background-image:url(<%=request.getContextPath()%>/img/li_ok.gif);
 	background-repeat:no-repeat;
 	background-position:5px 2px;
 	padding:2px 5px 0px 25px;

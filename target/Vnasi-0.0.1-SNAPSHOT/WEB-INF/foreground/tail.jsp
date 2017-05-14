@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>首页</title>
-<link href="../css/global.css" rel="stylesheet" type="text/css" />
+<link href="<%=request.getContextPath()%>/css/global.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
@@ -42,7 +42,7 @@
       <ul>
         <li><a href="#">首页</a> | <a href="#">客户服务</a>|<a href="#">品牌合作</a> |<a href="#">网站联盟</a> |<a href="#">投诉与建议</a></li>
         <li>Copyright © 2011 vjia.com All Rights Reserved 京ICP备08000757号 京公网安备110105005926</li>
-        <li><a href="#"><img src="../img/btm_logo_1.gif" width="92" height="45" alt="网上交易保障中心" /></a> <a href="#"><img src="../img/btm_logo_2.gif" width="96" height="45" alt="经营性网站备案信息" /></a></li>
+        <li><a href="#"><img src="<%=request.getContextPath()%>/img/btm_logo_1.gif" width="92" height="45" alt="网上交易保障中心" /></a> <a href="#"><img src="<%=request.getContextPath()%>/img/btm_logo_2.gif" width="96" height="45" alt="经营性网站备案信息" /></a></li>
       </ul>
     </div>
   </div>

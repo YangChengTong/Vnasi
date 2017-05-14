@@ -1,11 +1,11 @@
-ï»¿/* CSS Document */
+/* CSS Document */
 * {
 	margin:0;
 	padding:0;
 	list-style:none;
 }
 body {
-	font-family:Arial, Helvetica, sans-serif, "å®‹ä½“";
+	font-family:Arial, Helvetica, sans-serif, "ËÎÌå";
 	font-size:12px;
 }
 a {
@@ -92,7 +92,7 @@ h3 {
 	line-height:22px;
 }
 .txtbox li.cash a {
-	background:url(../images/pink_btn.gif) 0 0 no-repeat;
+	background:url(<%=request.getContextPath()%>/images/pink_btn.gif) 0 0 no-repeat;
 	color:#fff;
 	display:block;
 }
@@ -100,14 +100,14 @@ h3 {
 	text-decoration:none;
 }
 .txtbox li.submenu {
-	background:url(../images/top_menu_icon.gif) 49px 9px no-repeat;
+	background:url(<%=request.getContextPath()%>/images/top_menu_icon.gif) 49px 9px no-repeat;
 	width:68px;
 	line-height:30px;
 }
 .pink_btn {
 	width:46px;
 	height:18px;
-	background:url(../images/pink_btn.gif) 0 0 no-repeat;
+	background:url(<%=request.getContextPath()%>/images/pink_btn.gif) 0 0 no-repeat;
 }
 #wrap {
 	width:900px;
@@ -123,7 +123,7 @@ h3 {
 	margin:9px 0;
 }
 .logo {
-	background:url(../images/logo.gif) 0 0 no-repeat;
+	background:url(<%=request.getContextPath()%>/images/logo.gif) 0 0 no-repeat;
 	float:left;
 	width:203px;
 	height:71px;
@@ -135,7 +135,7 @@ h3 {
 	height:71px;
 }
 .serbar {
-	background:url(../images/top_ser.gif) 20px 24px no-repeat;
+	background:url(<%=request.getContextPath()%>/images/top_ser.gif) 20px 24px no-repeat;
 	float:left;
 	width:383px;
 	height:71px;
@@ -145,7 +145,7 @@ h3 {
 	margin-top:30px;
 }
 .searchinput {
-	background:url(../images/search_input.gif) 0 0 no-repeat;
+	background:url(<%=request.getContextPath()%>/images/search_input.gif) 0 0 no-repeat;
 	width:293px;
 	height:31px;
 	border:none;
@@ -154,7 +154,7 @@ h3 {
 	float:left;
 }
 .searchbtn {
-	background:url(../images/search_btn.gif) 0 0 no-repeat;
+	background:url(<%=request.getContextPath()%>/images/search_btn.gif) 0 0 no-repeat;
 	width:83px;
 	height:31px;
 	float:left;
@@ -167,11 +167,11 @@ h3 {
 .nav {
 	width:100%;
 	overflow:hidden;
-	background:url(../images/nav_bg.gif) 0 0 repeat-x;
+	background:url(<%=request.getContextPath()%>/images/nav_bg.gif) 0 0 repeat-x;
 	font-size:14px;
 }
 .nav ul {
-	background:url(../images/nav_l.gif) 0 0 no-repeat;
+	background:url(<%=request.getContextPath()%>/images/nav_l.gif) 0 0 no-repeat;
 	width:100%;
 	height:36px;
 }
@@ -188,7 +188,7 @@ h3 {
 	font-weight:bold;
 }
 .nav li.newproduct {
-	background:url(../images/nav_newproduct.gif) 0 0 no-repeat;
+	background:url(<%=request.getContextPath()%>/images/nav_newproduct.gif) 0 0 no-repeat;
 	margin:0;
 	width:82px;
 	text-indent:-9999px;
@@ -196,14 +196,14 @@ h3 {
 	cursor:pointer;
 }
 .nav li.presetime {
-	background:url(../images/nav_presetimer.gif) 0 0 no-repeat;
+	background:url(<%=request.getContextPath()%>/images/nav_presetimer.gif) 0 0 no-repeat;
 	margin:0;
 	width:82px;
 	text-indent:-9999px;
 	cursor:pointer;
 }
 .keywords {
-	background:url(../images/keywords_bg.gif) 0 0 no-repeat;
+	background:url(<%=request.getContextPath()%>/images/keywords_bg.gif) 0 0 no-repeat;
 	padding:3px 15px;
 	margin:3px 0;
 }
@@ -232,7 +232,7 @@ h3 {
 }
 .crumb li {
 	float:left;
-	background:url(../images/crumbicon.gif) right 3px no-repeat;
+	background:url(<%=request.getContextPath()%>/images/crumbicon.gif) right 3px no-repeat;
 	padding-right:20px;
 	margin-right:8px;
 }
@@ -255,7 +255,7 @@ h3 {
 }
 .crumb_acc li {
 	float:left;
-	background:url(../images/account/curmb_icon.gif) right 2px no-repeat;
+	background:url(<%=request.getContextPath()%>/images/account/curmb_icon.gif) right 2px no-repeat;
 	padding-right:10px;
 	margin-right:5px;
 	color:#7d7d7d;
@@ -311,7 +311,7 @@ h3 {
 	border:1px solid #c7c7c7;
 }
 .txt_l h2 {
-	background:url(../images/sidebar_tit_bg.gif) 0 0 repeat-x;
+	background:url(<%=request.getContextPath()%>/images/sidebar_tit_bg.gif) 0 0 repeat-x;
 	line-height:28px;
 	text-indent:10px;
 	margin:0 2px;
@@ -328,7 +328,7 @@ h3 {
 }
 .txt_l dd {
 	line-height:16px;
-	font-family:"å®‹ä½“";
+	font-family:"ËÎÌå";
 }
 .txt_l ul {
 	width:100%;
@@ -344,18 +344,18 @@ h3 {
 	cursor:pointer;
 }
 .txt_l li.email {
-	background:url(../images/sub_l_mail.gif) no-repeat;
+	background:url(<%=request.getContextPath()%>/images/sub_l_mail.gif) no-repeat;
 	border-bottom:1px solid #c7c7c7;
 }
 .txt_l li.msg {
-	background:url(../images/sub_l_msg.gif) no-repeat;
+	background:url(<%=request.getContextPath()%>/images/sub_l_msg.gif) no-repeat;
 }
 .leftmenu {
 	margin-bottom:10px;
 	border:1px solid #c7c7c7;
 }
 .leftmenu h2 {
-	background:url(../images/sidebar_tit_bg.gif) 0 0 repeat-x;
+	background:url(<%=request.getContextPath()%>/images/sidebar_tit_bg.gif) 0 0 repeat-x;
 	line-height:28px;
 	text-indent:10px;
 	margin:0 2px;
@@ -366,7 +366,7 @@ h3 {
 	padding-top:4px;
 }
 .leftmenu li {
-	background:url(../images/submenuicon.gif) 0 8px no-repeat;
+	background:url(<%=request.getContextPath()%>/images/submenuicon.gif) 0 8px no-repeat;
 	padding-left:13px;
 	line-height:26px;
 	border-bottom:1px solid #D7D7D7;
@@ -381,7 +381,7 @@ h3 {
 	border:1px solid #c7c7c7;
 }
 .hot_question h2 {
-	background:url(../images/sidebar_tit_bg.gif) 0 0 repeat-x;
+	background:url(<%=request.getContextPath()%>/images/sidebar_tit_bg.gif) 0 0 repeat-x;
 	line-height:28px;
 	text-indent:10px;
 	margin:0 2px;
@@ -411,7 +411,7 @@ h3 {
 	width:780px;
 }
 .announce {
-	background:url(../images/help/laud_icon.gif) 10px 7px no-repeat #FEF8EF;
+	background:url(<%=request.getContextPath()%>/images/help/laud_icon.gif) 10px 7px no-repeat #FEF8EF;
 	line-height:30px;
 	border:1px solid #FFCE80;
 	padding-left:30px;
@@ -450,14 +450,14 @@ h3 {
 }
 .search_help label {
 	text-indent:-9999px;
-	background:url(../images/search_font.gif) 0 3px no-repeat;
+	background:url(<%=request.getContextPath()%>/images/search_font.gif) 0 3px no-repeat;
 	width:70px;
 	height:28px;
 	margin-right:10px;
 }
 .search_help ul {
 	float:right;
-	background:url(../images/telicon.gif) 0 center no-repeat;
+	background:url(<%=request.getContextPath()%>/images/telicon.gif) 0 center no-repeat;
 	width:190px;
 	margin:0;
 	padding:5px 0;
@@ -471,19 +471,19 @@ h3 {
 	font-weight:bold;
 }
 .input_sear {
-	background:url(../images/input_bg.gif) no-repeat;
+	background:url(<%=request.getContextPath()%>/images/input_bg.gif) no-repeat;
 	width:336px;
 	height:28px;
 	border:none;
 }
 .search_btn {
-	background:url(../images/sear_help_btn.gif) no-repeat;
+	background:url(<%=request.getContextPath()%>/images/sear_help_btn.gif) no-repeat;
 	width:76px;
 	height:28px;
 }
 .txt_bg {
 	padding:20px 10px 20px 20px;
-	background:url(../images/txt_bg.gif) repeat-x;
+	background:url(<%=request.getContextPath()%>/images/txt_bg.gif) repeat-x;
 }
 .txt_bg dl {
 	float:left;
@@ -537,7 +537,7 @@ h3 {
 }
 .infor {
 	overflow:hidden;
-	background:url(../images/img_contact.gif) right -20px no-repeat;
+	background:url(<%=request.getContextPath()%>/images/img_contact.gif) right -20px no-repeat;
 	padding:0 230px 40px 0;
 }
 .infor p {
@@ -624,7 +624,7 @@ h3 {
 	text-indent:10px;
 }
 .sidebar_acc li.current {
-	background:url(../images/account/left_current.gif) repeat-x;
+	background:url(<%=request.getContextPath()%>/images/account/left_current.gif) repeat-x;
 	height:20px;
 	line-height:22px;
 }
@@ -633,17 +633,17 @@ h3 {
 	font-weight:bold;
 }
 .tit_sale {
-	background:url(../images/presetimer/tit_sale.gif) 0 0 no-repeat;
+	background:url(<%=request.getContextPath()%>/images/presetimer/tit_sale.gif) 0 0 no-repeat;
 	height:53px;
 	text-indent:-9999px;
 }
 .tit_rush {
-	background:url(../images/presetimer/tit_rush.gif) 0 0 no-repeat;
+	background:url(<%=request.getContextPath()%>/images/presetimer/tit_rush.gif) 0 0 no-repeat;
 	height:53px;
 	text-indent:-9999px;
 }
 .tit_saleoff {
-	background:url(../images/presetimer/tit_saleoff.gif) 0 0 no-repeat;
+	background:url(<%=request.getContextPath()%>/images/presetimer/tit_saleoff.gif) 0 0 no-repeat;
 	height:53px;
 	text-indent:-9999px;
 }
@@ -667,7 +667,7 @@ h3 {
 	margin-right:0;
 }
 .buybtn {
-	background:url(../images/presetimer/rush_btn.gif) 0 0 no-repeat;
+	background:url(<%=request.getContextPath()%>/images/presetimer/rush_btn.gif) 0 0 no-repeat;
 	border:none;
 	width:127px;
 	height:40px;
@@ -733,7 +733,7 @@ h3 {
 	width:53px;
 	height:22px;
 	overflow:hidden;
-	background:url(../images/rss.gif) 0 0 no-repeat;
+	background:url(<%=request.getContextPath()%>/images/rss.gif) 0 0 no-repeat;
 	border:none;
 	color:#fff;
 	line-height:24px;
@@ -749,7 +749,7 @@ h3 {
 	margin:10px 0;
 	padding:6px 55px 0;
 	display:inline;
-	background:url(../img/btm_line.gif) right 5px no-repeat;
+	background:url(<%=request.getContextPath()%>/img/btm_line.gif) right 5px no-repeat;
 	backgroundColor:#000;
 	width:115px;
 	height:94px;
@@ -767,7 +767,7 @@ h3 {
 .topline {
 	position:absolute;
 	left:21px;
-	background:url(../images/btm_topline.gif) 0 0 repeat-x;
+	background:url(<%=request.getContextPath()%>/images/btm_topline.gif) 0 0 repeat-x;
 	width:940px;
 	height:2px;
 	overflow:hidden;
@@ -793,7 +793,7 @@ h3 {
 	color:#aab0b0;
 }
 .subscribe input.rss {
-	background:url(../images/time/btn_bg.gif) no-repeat;
+	background:url(<%=request.getContextPath()%>/images/time/btn_bg.gif) no-repeat;
 	width:53px;
 	height:22px;
 	float:right;
@@ -811,7 +811,7 @@ h3 {
 }
 .lpk-box h3 {
 	height:32px;
-	background:url(../images/lpk-title-img.png) no-repeat 0 0;
+	background:url(<%=request.getContextPath()%>/images/lpk-title-img.png) no-repeat 0 0;
 	position:relative;
 	top:1px;
 }
@@ -889,7 +889,7 @@ h3 {
 	height:27px;
 	position:relative;
 	top:1px;
-	background:url(../images/cart-title.png) no-repeat 0 0;
+	background:url(<%=request.getContextPath()%>/images/cart-title.png) no-repeat 0 0;
 }
 .col td {
 	height:10px;
@@ -921,7 +921,7 @@ h3 {
 	position:relative;
 	height:30px;
 	border-bottom:1px solid #9b0312;
-	background:url(../images/img01.png) no-repeat 0 0;
+	background:url(<%=request.getContextPath()%>/images/img01.png) no-repeat 0 0;
 }
 .serarch-box {
 	position:absolute;
@@ -935,7 +935,7 @@ h3 {
 	width:53px;
 	height:20px;
 	border-width:0;
-	background:url(../images/img02.png) no-repeat 0 0;
+	background:url(<%=request.getContextPath()%>/images/img02.png) no-repeat 0 0;
 }
 .class-1 {
 	padding:5px;
@@ -960,7 +960,7 @@ h3 {
 	height:34px;
 	line-height:34px;
 	padding-left:34px;
-	background:url(../images/img03.png) no-repeat 0 0;
+	background:url(<%=request.getContextPath()%>/images/img03.png) no-repeat 0 0;
 	border-bottom:1px solid #d0d0d0;
 	margin-bottom:10px;
 }
