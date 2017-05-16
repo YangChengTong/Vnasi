@@ -50,7 +50,7 @@
         	<div class="tou2">
             	<div class="tou2divl">
                 	<span>
-                    	欢迎你来到维纳斯,<c:if test="${currentUser==null }">请&nbsp;<a href="${pageContext.request.contextPath}/path/toLogin" target="_parent">登录</a>&nbsp;或&nbsp;<a href="${pageContext.request.contextPath}/path/toRegister" target="_parent">注册</a></c:if>
+                    	欢迎你来到维纳斯,<shiro:principal></shiro:principal><c:if test="${currentUser==null }">请&nbsp;<a href="${pageContext.request.contextPath}/path/toLogin" target="_parent">登录</a>&nbsp;或&nbsp;<a href="${pageContext.request.contextPath}/path/toRegister" target="_parent">注册</a></c:if>
                     	<c:if test="${currentUser!=null }">${currentUser.userId }</c:if>
                     </span>
                 </div>

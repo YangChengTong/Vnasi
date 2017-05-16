@@ -74,7 +74,7 @@ public class ShiroRealm extends AuthorizingRealm {
 		}
 	
 	// 授权回调函数
-		@Override
+	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		// 1. 从 PrincipalCollection 中来获取登录用户的信息
 		String userName = (String) principals.getPrimaryPrincipal();
@@ -85,7 +85,7 @@ public class ShiroRealm extends AuthorizingRealm {
 		// 无论是普通user角色还是amdin系统角色都给上一个user（1）用户角色，要是admin就给普通用户再加上一个admin（2）角色
 		Set<String> roles = new HashSet<String>();
 		roles.add("user");
-		if (user.getUserName().equals(userName)) {
+		if (user.getUserId().equals(userName)) {
 			roles.add("admin");
 		}
 

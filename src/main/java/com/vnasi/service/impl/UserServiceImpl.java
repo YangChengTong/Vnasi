@@ -2,6 +2,7 @@ package com.vnasi.service.impl;
 
 import java.util.List;
 
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,7 @@ public class UserServiceImpl implements UserService {
 		return userMapper.insert(user);
 	}
 
+	@RequiresRoles({"admin"})
 	public VnasiUser login(VnasiUser user) {
 		VnasiUserExample userExample = new VnasiUserExample();
 		Criteria createCriteria = userExample.createCriteria();

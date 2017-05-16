@@ -7,9 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
-<link type="text/css" rel="stylesheet" href="css/style.css" />
-<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
-<script type="text/javascript" src="scripts/function.js"></script>
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css" />
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/function.js"></script>
 
 <style type="text/css">
 	body{margin:0px; }
@@ -69,7 +69,7 @@ $(function(){
 	<iframe src="head.jsp" height="167px" width="100%" frameborder="0" scrolling="no"></iframe>
 	<div class="bodyMax">
     	<div class="shouyes">
-        	<div class="shouyesImg"><img src="img/zhuye.png" /></div><div class="shouyes1">网站留言/留言</div>
+        	<div class="shouyesImg"><img src="<%=request.getContextPath()%>/img/zhuye.png" /></div><div class="shouyes1">网站留言/留言</div>
         </div>
 <div id="main" class="wrap">
 	<%

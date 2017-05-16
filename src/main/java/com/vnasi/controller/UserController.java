@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.Subject;
@@ -46,11 +47,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("/login")
-	public String login(VnasiUser user,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		IniSecurityManagerFactory iniSecurityManagerFactory = new IniSecurityManagerFactory("classpath:shiro/shiro.ini");  
-		// 创建SecurityManager (根据配置创建SecurityManager实例)  
-		SecurityManager instance = iniSecurityManagerFactory.getInstance();
-		SecurityUtils.setSecurityManager(instance); 
+	public String login(VnasiUser user,HttpServletRequest request,HttpServletResponse response) throws Exception{ 
 		// 获取当前的 Subject. 调用 SecurityUtils.getSubject();
         Subject currentUser = SecurityUtils.getSubject();
 		String input = request.getParameter("checkcode");   							//输入的验证码

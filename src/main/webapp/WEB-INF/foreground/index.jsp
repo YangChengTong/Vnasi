@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -87,7 +88,8 @@
 </head>
 
 <body>
-
+<shiro:hasRole name="user">
+	
 	<iframe src="${pageContext.request.contextPath}/path/toForegroundHead" height="167px" width="100%" frameborder="0"
 		scrolling="no"></iframe>
 	<!--这里要图片切换jQuery-->
@@ -297,5 +299,6 @@
 	</div>
 	<iframe src="${pageContext.request.contextPath}/path/toForegroundTail" height="250px" width="100%" frameborder="0"
 		scrolling="no"></iframe>
+</shiro:hasRole>
 </body>
 </html>
