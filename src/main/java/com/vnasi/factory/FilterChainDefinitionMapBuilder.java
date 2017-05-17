@@ -11,10 +11,10 @@ public class FilterChainDefinitionMapBuilder {
 		public LinkedHashMap<String, String> buildFilterChainDefinitionMap(){
 			LinkedHashMap<String, String> hashMap = new LinkedHashMap<String, String>();
 			
-			hashMap.put("/path/**", "anon");
+			hashMap.put("/path/**", "anon");			
+			hashMap.put("/user/**", "anon");
 			
-			hashMap.put("/user/login", "anon");
-			hashMap.put("/foreground/index", "authc,roles[admin]");
+			hashMap.put("/foreground/index", "authc,roles[user]");
 			hashMap.put("/authCode", "anon");
 			
 			

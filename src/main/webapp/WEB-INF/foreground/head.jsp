@@ -60,7 +60,7 @@
                     	<c:if test="${currentUser==null }"> <a href="${pageContext.request.contextPath}/path/toLogin" target="_parent">后台管理</a></c:if>
                        	<c:if test="${currentUser!=null }"> <a href="${pageContext.request.contextPath}/path/toManageIndex" target="_parent">后台管理</a></c:if>&nbsp;&nbsp;
                         <a href="" target="_parent">留言</a>&nbsp;&nbsp;
-                        <a href="${pageContext.request.contextPath}/path/toLogin" target="_parent">退出&nbsp;</a>
+                        <a href="${pageContext.request.contextPath}/user/logout" target="_parent">退出&nbsp;</a>
                     </span>
                 </div>
    			</div>

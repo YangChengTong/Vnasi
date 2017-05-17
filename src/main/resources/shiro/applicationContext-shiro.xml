@@ -1,80 +1,81 @@
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
-	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
-	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
-
-	<!-- 1. 配置 SecurityManager! -->
-	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<property name="cacheManager" ref="cacheManager" />
-		<property name="authenticator" ref="authenticator" />
-		
-		<property name="realms">
-			<list>
-				<ref bean="jdbcRealm"/>
-				<!-- <ref bean="shiroRealm"/> -->
-			</list>
-		</property>
-		
-		<!-- 设置登录时长 半天12个小时、-->
-		<property name="rememberMeManager.cookie.maxAge" value="10"></property>
-	</bean>
-
-	<!-- 2. 配置 CacheManager. -->
-	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-		<property name="cacheManagerConfigFile" value="classpath:shiro/ehcache.xml" />
-	</bean>
-	
-	<bean id="authenticator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
-		<property name="authenticationStrategy">
-			<bean class="org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy"></bean>
-		</property>
-	</bean>
-
-	<!-- 3. 配置 多Realm验证:MD5 SHA1... 3.1 直接配置实现了 org.apache.shiro.realm.Realm 接口的 bean -->
-	<bean id="jdbcRealm" class="com.vnasi.realms.ShiroRealm">
-		<property name="credentialsMatcher">
-			<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-				<property name="hashAlgorithmName" value="MD5" />
-				<property name="hashIterations" value="1024" />
-			</bean>
-		</property>
-	</bean>
-	<!-- 暂时没用上 -->
-	<!-- <bean id="shiroRealm" class="com.vnasi.realms.SecondRealm">
-		<property name="credentialsMatcher">
-			<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-				<property name="hashAlgorithmName" value="SHA1" />
-				<property name="hashIterations" value="1024" />
-			</bean>
-		</property>
-	</bean> -->
-
-	<!-- 4. 配置 LifecycleBeanPostProcessor. 可以自定的来调用配置在 Spring IOC 容器中 shiro bean 的生命周期方法. -->
-	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
-
-	<!-- 5. 启用 IOC 容器中使用 shiro 的注解. 但必须在配置了 LifecycleBeanPostProcessor 之后才可以使用. -->
-	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor" />
-	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
-		<property name="securityManager" ref="securityManager" />
-	</bean>
-
-	<!-- 6. 配置 ShiroFilter. -->
-	 <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-        <property name="securityManager" ref="securityManager"/>
-        <!-- <property name="loginUrl" value="/path/toLogin"/>
-        <property name="successUrl" value="/foreground/index"/> -->
-        <property name="unauthorizedUrl" value="/path/toUnAuthorized"/>
-              
-        <!-- 静态资源map -->
-		<property name="filterChainDefinitionMap" ref="filterChainDefinitionMap" />
-    </bean>
-	
-	<!-- 采用从数据表中初始化静态资源map  配置一个 bean, 该 bean 实际上是一个 Map. 通过实例工厂方法的方式-->
-	<bean id="filterChainDefinitionMap" factory-bean="filterChainDefinitionMapBuilder" factory-method="buildFilterChainDefinitionMap"></bean>
-	<bean id="filterChainDefinitionMapBuilder" class="com.vnasi.factory.FilterChainDefinitionMapBuilder"/>
-
-</beans>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"  
+    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd  
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd  
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">  
+  
+    <!-- 1. 配置 SecurityManager! -->  
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">  
+        <property name="cacheManager" ref="cacheManager" />  
+        <property name="authenticator" ref="authenticator" />  
+          
+        <property name="realms">  
+            <list>  
+                <ref bean="jdbcRealm"/>  
+                <!-- <ref bean="shiroRealm"/> -->  
+            </list>  
+        </property>  
+          
+        <!-- 设置登录时长 半天12个小时、-->  
+        <property name="rememberMeManager.cookie.maxAge" value="43200"></property>  
+    </bean>  
+  
+    <!-- 2. 配置 CacheManager. -->  
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">  
+        <property name="cacheManagerConfigFile" value="classpath:shiro/ehcache.xml" />  
+    </bean>  
+      
+    <bean id="authenticator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">  
+        <property name="authenticationStrategy">  
+            <bean class="org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy"></bean>  
+        </property>  
+    </bean>  
+  
+    <!-- 3. 配置 多Realm验证:MD5 SHA1... 3.1 直接配置实现了 org.apache.shiro.realm.Realm 接口的 bean -->  
+    <bean id="jdbcRealm" class="com.vnasi.realms.ShiroRealm">  
+        <property name="credentialsMatcher">  
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">  
+                <property name="hashAlgorithmName" value="MD5" />  
+                <property name="hashIterations" value="1024" />  
+            </bean>  
+        </property>  
+    </bean>  
+    <!-- 暂时没用上 -->  
+    <!-- <bean id="shiroRealm" class="com.vnasi.realms.SecondRealm">  
+        <property name="credentialsMatcher">  
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">  
+                <property name="hashAlgorithmName" value="SHA1" />  
+                <property name="hashIterations" value="1024" />  
+            </bean>  
+        </property>  
+    </bean> -->  
+  
+    <!-- 4. 配置 LifecycleBeanPostProcessor. 可以自定的来调用配置在 Spring IOC 容器中 shiro bean 的生命周期方法. -->  
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />  
+  
+    <!-- 5. 启用 IOC 容器中使用 shiro 的注解. 但必须在配置了 LifecycleBeanPostProcessor 之后才可以使用. -->  
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor" />  
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">  
+        <property name="securityManager" ref="securityManager" />  
+    </bean>  
+  
+    <!-- 6. 配置 ShiroFilter. -->  
+     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">  
+        <property name="securityManager" ref="securityManager"/>  
+        <!-- <property name="loginUrl" value="/path/toLogin"/>  
+        <property name="successUrl" value="/foreground/index"/> -->  
+        <property name="unauthorizedUrl" value="/path/toUnAuthorized"/>  
+        
+                
+        <!-- 静态资源map -->  
+        <property name="filterChainDefinitionMap" ref="filterChainDefinitionMap" />  
+    </bean>  
+      
+    <!-- 采用从数据表中初始化静态资源map  配置一个 bean, 该 bean 实际上是一个 Map. 通过实例工厂方法的方式-->  
+    <bean id="filterChainDefinitionMap" factory-bean="filterChainDefinitionMapBuilder" factory-method="buildFilterChainDefinitionMap"></bean>  
+    <bean id="filterChainDefinitionMapBuilder" class="com.vnasi.factory.FilterChainDefinitionMapBuilder"/>  
+  
+</beans> 
