@@ -1,5 +1,3 @@
-<%@page import="cn.vnasi.entity.NewUser"%>
-<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -11,63 +9,70 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/scripts/function.js"></script>
 </head>
+<!-- 写在Body外面就行可以显示 -->
+<!-- <div id="time">
+    <script>
+        document.getElementById('time').innerHTML = new Date().toLocaleString()
+                + ' 星期' + '日一二三四五六'.charAt(new Date().getDay());
+        setInterval(
+                "document.getElementById('time').innerHTML=new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());",
+                1000);
+    </script>
+</div> -->
 <body >
 <div id="header" class="wrap">
 	<div id="logo"><img src="<%=request.getContextPath()%>/img/vnasi.com.logo.png" style="width: 120px;" /></div>
-	<div class="help"><a href="<%=request.getContextPath()%>/index.jsp">返回前台页面</a></div>
+	<div class="help"><a href="path/toForegroundIndex">返回前台页面</a></div>
 	<div class="navbar">
 		<ul class="clearfix">
-			<li class="current"><a href="index.jsp">首页</a></li>
-			<li><a href="user.jsp">用户</a></li>
-			<li><a href="product.jsp">商品</a></li>
-			<li><a href="<%=request.getContextPath()%>/Vnasi_orderServlet?opr=list">订单</a></li>
-			<li><a href="<%=request.getContextPath()%>/Vnasi_reviewServlet?opr=list">评论</a></li>
-			<li><a href="guestbook.jsp">留言</a></li>
-			<li><a href="news.jsp">新闻</a></li>
+			<li class="current"><a href="path/toManageIndex">首页</a></li>
+			<li><a href="#">用户</a></li>
+			<li><a href="#">商品</a></li>
+			<li><a href="#">订单</a></li>
+			<li><a href="#">评论</a></li>
+			<li><a href="#">留言</a></li>
+			<li><a href="#">新闻</a></li>
 		</ul>
 	</div>
 </div>
-<%
-		//获取系统当前时间
-		Date date = new Date();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		String dateString = formatter.format(date);
-		NewUser user = (NewUser)session.getAttribute("currentUser");
-		if(user == null){
-			response.sendRedirect("<%=request.getContextPath()%>/login.jsp");
-		}
-%>
+
 <div id="childNav">
 	<div class="welcome wrap">
-	<c:if test="${user.status==1 }">
-		普通用户: ${user.id }您好，今天是<%=dateString %>，欢迎回到管理后台。<a href = "<%=request.getContextPath()%>/UserServlet?opr=exit" style = "color:blue;font-weight:bold;">退出账号</a>
+	<c:if test="${currentUser.status==1 }">
+		普通用户: ${currentUser.userId }您好，当前时间：
+		<% out.print(new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date())); %>
+		<!--动态时间显示不出来，操蛋  <div id="time" style="width:100px; height:20px;color: white;"></div> -->
+		，欢迎回到管理后台。<a href = "#" style = "color:blue;font-weight:bold;">退出账号</a>
 	</c:if>
-	<c:if test="${user.status==2 }">
-		管理员: ${user.id }您好，今天是<%=dateString %>，欢迎回到管理后台。<a href = "<%=request.getContextPath()%>/UserServlet?opr=exit" style = "color:blue;font-weight:bold;">退出账号</a>
+	<c:if test="${currentUser.status==2 }">
+		管理员: ${currentUser.userId }您好，当前时间：
+		<% out.print(new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date())); %>
+		<!-- <div id="time2" style="width:100px; height:20px;color: white;"></div> -->
+		，欢迎回到管理后台。<a href = "#" style = "color:blue;font-weight:bold;">退出账号</a>
 	</c:if>
 	</div>
 </div>
 <div id="position" class="wrap">
-	您现在的位置：<a href="index.jsp">维纳斯花店</a> &gt; 管理后台
+	您现在的位置：<a href="#">维纳斯花店</a> &gt; 管理后台
 </div>
 <div id="main" class="wrap">
 	<div id="menu-mng" class="lefter">
 		<div class="box">
 			<dl>
 				<dt>用户管理</dt>
-				<dd><a href="<%=request.getContextPath()%>/UserServlet?opr=list&shuaxin=shuaxin">用户管理</a></dd>
-				<c:if test="${user.status==2  }">
+				<dd><a href="#">用户管理</a></dd>
+				<c:if test="${currentUser.status==2  }">
 					<dt>商品信息</dt>
-					<dd><em><a href="<%=request.getContextPath()%>/ProductServlet?opr=selectFu">新增</a></em><a href="<%=request.getContextPath()%>/ProductServlet?opr=list">分类管理</a></dd>
-					<dd><em><a href="<%=request.getContextPath()%>/ShoppingServlet?opr=insert">新增</a></em><a href="product.jsp">商品管理</a></dd>
+					<dd><em><a href="#">新增</a></em><a href="#">分类管理</a></dd>
+					<dd><em><a href="#">新增</a></em><a href="#">商品管理</a></dd>
 					<dt>订单管理</dt>
-					<dd><a href="<%=request.getContextPath()%>/Vnasi_orderServlet?opr=list">订单管理</a></dd>
+					<dd><a href="#">订单管理</a></dd>
 					<dt>评论管理</dt>
-					<dd><a href="<%=request.getContextPath()%>/Vnasi_reviewServlet?opr=list">评论管理</a></dd>
+					<dd><a href="#">评论管理</a></dd>
 					<dt>留言管理</dt>
-					<dd><a href="guestbook.jsp">留言管理</a></dd>
+					<dd><a href="#">留言管理</a></dd>
 					<dt>新闻管理</dt>
-					<dd><em><a href="news-add.jsp">新增</a></em><a href="news.jsp">新闻管理</a></dd>
+					<dd><em><a href="#">新增</a></em><a href="#">新闻管理</a></dd>
 				</c:if>
 			  	
 			</dl>
@@ -93,6 +98,22 @@
 	Copyright &copy; 2013 北大青鸟 All Rights Reserved. 京ICP证1000001号
 </div>
 </body>
+<script>
+        var time=document.getElementById('time');
+		time.innerHTML = new Date().toLocaleString()
+                + ' 星期' + '日一二三四五六'.charAt(new Date().getDay())
+        setInterval(
+                "document.getElementById('time').innerHTML=new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());",
+                1000);
+</script>
+<script>
+        var time2=document.getElementById('time2');
+		time2.innerHTML = new Date().toLocaleString()
+                + ' 星期' + '日一二三四五六'.charAt(new Date().getDay())
+        setInterval(
+                "document.getElementById('time2').innerHTML=new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());",
+                1000);
+</script>
 </html>
 
 

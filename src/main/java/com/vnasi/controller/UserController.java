@@ -33,7 +33,7 @@ public class UserController {
 		String chengshi =request.getParameter("chengshi")+request.getParameter("diqu")+request.getParameter("shou");
 		user.setAddress(chengshi);
 		user.setLogin(0);
-		user.setStatus(2);
+		user.setStatus(2);     //1:管理员  2:普通用户
 		int register = service.register(user);
 		if(register>0){
 			//out.print("<script>alert('注册成功！');location.href={pageContext.request.contextPath}/foreground/login</script>");

@@ -169,7 +169,9 @@
 	        	<c:if test="${userId != null}">
 	        		<input id ="text" class="text" type="text" name="userId" value="${userId }" placeholder="有效账户名"/>
 	        	</c:if>
+	        	<c:if test="${userId == null}">
 		        	<input id ="text" class="text" type="text" name="userId" value="" placeholder="有效账户名"/>
+	        	</c:if>
         	</td>
             <td><div id = "textH"></div></td>
         </tr>

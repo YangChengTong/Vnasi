@@ -28,6 +28,10 @@ public class PathMapping {
 	public String manageIndex(){
 		return "/manage/index";
 	}
+	@RequestMapping("/toForegroundIndex")
+	public String foreground(){
+		return "/foreground/index";
+	}
 	@RequestMapping("/toUnAuthorized")
 	public String unauthorized(){
 		return "/foreground/unauthorized";
